@@ -6,7 +6,7 @@ function getCivData () {
 	var civData = [
 	// Resources
 	new Resource({ 
-		id:"food", name:"food", increment:1, specialChance:0.1,
+		id:"food", name:"food", increment:99999999, specialChance:0.1,
 		subType:"basic",
 		specialMaterial: "skins", verb: "harvest", activity: "harvesting", //I18N
 		get limit() { 
@@ -16,14 +16,14 @@ function getCivData () {
 		set limit(value) { return this.limit; } // Only here for JSLint.
 	}),
 	new Resource({ 
-		id:"wood", name:"wood", increment:1, specialChance:0.1,
+		id:"wood", name:"wood", increment:99999999, specialChance:0.1,
 		subType:"basic",
 		specialMaterial: "herbs", verb: "cut", activity: "woodcutting", //I18N
 		get limit() { return 200 + (civData.woodstock.owned  * 200); },
 		set limit(value) { return this.limit; } // Only here for JSLint.
 	}),
 	new Resource({ 
-		id:"stone", name:"stone", increment:1, specialChance:0.1,
+		id:"stone", name:"stone", increment:99999999, specialChance:0.1,
 		subType:"basic",
 		specialMaterial: "ore", verb: "mine", activity: "mining", //I18N
 		get limit() { return 200 + (civData.stonestock.owned  * 200); },
@@ -48,21 +48,21 @@ function getCivData () {
 		effectText:"Conquer more from your neighbors." }),
 	new Building({ 
 		id:"tent", singular:"tent", plural:"tents",
-		require: { wood:2, skins:2 },
+		require: { wood:0, skins:0 },
 		effectText:"+1 max pop." }),
 	new Building({ 
 		id:"hut", singular:"wooden hut", plural:"wooden huts",
-		require : { wood:20, skins:1 },
+		require : { wood:0, skins:0 },
 		effectText:"+3 max pop." }),
 	new Building({ 
 		id:"cottage", singular:"cottage", plural:"cottages",
 		prereqs:{ masonry: true },
-		require:{ wood:10, stone:30 },
+		require:{ wood:0, stone:0 },
 		effectText:"+6 max pop." }),
 	new Building({ 
 		id:"house", singular:"house", plural:"houses",
 		prereqs:{ construction: true },
-		require:{ wood:30, stone:70 },
+		require:{ wood:0, stone:0 },
 		get effectText() { 
 			var maxPop = 10 + 2*(civData.slums.owned + civData.tenements.owned); 
 			return "+" + maxPop + " max pop."; 
@@ -76,7 +76,7 @@ function getCivData () {
 	new Building({ 
 		id: "mansion", singular:"mansion", plural:"mansions",
 		prereqs:{ architecture: true },
-		require:{ wood:200, stone:200, leather:20 },
+		require:{ wood:0, stone:0, leather:0 },
 		effectText:"+50 max pop." }),
 	new Building({ 
 		id: "barn", singular:"barn", plural:"barns",
@@ -93,33 +93,33 @@ function getCivData () {
 	}),
 	new Building({ 
 		id: "woodstock", singular:"wood stockpile", plural:"wood stockpiles",
-		require:{ wood:100 },
+		require:{ wood:0 },
 		effectText: "+200 wood storage" 
 	}),
 	new Building({ 
 		id: "stonestock", singular:"stone stockpile", plural:"stone stockpiles",
-		require:{ wood:100 },
+		require:{ wood:0 },
 		effectText: "+200 stone storage" 
 	}),
 	new Building({ 
 		id: "tannery", singular:"tannery", plural:"tanneries",
 		prereqs:{ masonry: true },
-		require:{ wood:30, stone:70, skins:2 },
+		require:{ wood:0, stone:0, skins:0 },
 		effectText:"allows 1 tanner" }),
 	new Building({ 
 		id: "smithy", singular:"smithy", plural:"smithies",
 		prereqs:{ masonry: true },
-		require:{ wood:30, stone:70, ore:2 },
+		require:{ wood:0, stone:0, ore:0 },
 		effectText:"allows 1 blacksmith" }),
 	new Building({ 
 		id: "apothecary", singular:"apothecary", plural:"apothecaries",
 		prereqs:{ masonry: true },
-		require:{ wood:30, stone:70, herbs:2 },
+		require:{ wood:0, stone:0, herbs:0 },
 		effectText:"allows 1 healer" }),
 	new Building({ 
 		id:"temple", singular:"temple", plural:"temples",
 		prereqs:{ masonry: true },
-		require:{ wood:30, stone:120 },
+		require:{ wood:0, stone:0 },
 		effectText:"allows 1 cleric",
 		// If purchase was a temple and aesthetics has been activated, increase morale
 		// If population is large, temples have less effect.
@@ -132,17 +132,17 @@ function getCivData () {
 	new Building({ 
 		id: "barracks", name: "barracks",
 		prereqs:{ masonry: true },
-		require:{ food:20, wood:60, stone:120, metal:10 },
+		require:{ food:0, wood:0, stone:0, metal:0 },
 		effectText:"allows 10 soldiers" }),
 	new Building({ 
 		id: "stable", singular:"stable", plural:"stables",
 		prereqs:{ horseback: true },
-		require:{ food:60, wood:60, stone:120, leather:10 },
+		require:{ food:0, wood:0, stone:0, leather:0 },
 		effectText:"allows 10 cavalry" }),
 	new Building({ 
 		id: "graveyard", singular:"graveyard", plural:"graveyards",
 		prereqs:{ masonry: true },
-		require:{ wood:50, stone:200, herbs:50 },
+		require:{ wood:0, stone:0, herbs:0 },
 		vulnerable: false, // Graveyards can't be sacked
 		effectText:"contains 100 graves",
 		onGain: function(num) { if (num === undefined) { num = 1; } digGraves(num); }}),
@@ -151,8 +151,8 @@ function getCivData () {
 		prereqs:{ wheel: true },
 		get require() { 
 			return { 
-				wood: 100 * (this.owned + 1) * Math.pow(1.05,this.owned),
-				stone: 100 * (this.owned + 1) * Math.pow(1.05,this.owned) 
+				wood: 0 * (this.owned + 1) * Math.pow(100.05,this.owned),
+				stone: 0 * (this.owned + 1) * Math.pow(100.05,this.owned) 
 			}; 
 		},
 		set require(value) { return this.require; }, // Only here for JSLint.
