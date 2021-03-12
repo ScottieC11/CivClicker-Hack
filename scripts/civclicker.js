@@ -103,8 +103,8 @@ var curCiv = {
 
 // These are not saved, but we need them up here for the asset data to init properly.
 var population = {
-	current:	0,
-	living:		0,
+	current:	5,
+	living:		5,
 	zombie:		0,
 	limit:		0,
 	healthy:	0,
@@ -196,11 +196,11 @@ function setIndexArrays (civData) {
 function calculatePopulation () {
 
 	population = {
-		current:	0,
-		living:		0,
+		current:	5,
+		living:		5,
 		zombie:		curCiv.zombie.owned,
-		limit:		0,
-		limitIncludingUndead: 0,
+		limit:		99999999,
+		limitIncludingUndead: 99999999,
 		healthy:	0,
 		totalSick:	0,
 		extra: 		0
