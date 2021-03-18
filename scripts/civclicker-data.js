@@ -10,7 +10,7 @@ function getCivData () {
 		subType:"basic",
 		specialMaterial: "skins", verb: "harvest", activity: "harvesting", //I18N
 		get limit() { 
-			var barnBonus = ((civData.granaries.owned ? 2 : 1) * 0);
+			var barnBonus = ((civData.granaries.owned ? 2 : 1) * 9999999999);
 			return 200 + (civData.barn.owned * barnBonus); 
 		},
 		set limit(value) { return this.limit; } // Only here for JSLint.
@@ -19,14 +19,14 @@ function getCivData () {
 		id:"wood", name:"wood", increment:99999999, specialChance:0.1,
 		subType:"basic",
 		specialMaterial: "herbs", verb: "cut", activity: "woodcutting", //I18N
-		get limit() { return 200 + (civData.woodstock.owned  * 0); },
+		get limit() { return 200 + (civData.woodstock.owned  * 99999999999999); },
 		set limit(value) { return this.limit; } // Only here for JSLint.
 	}),
 	new Resource({ 
 		id:"stone", name:"stone", increment:99999999, specialChance:0.1,
 		subType:"basic",
 		specialMaterial: "ore", verb: "mine", activity: "mining", //I18N
-		get limit() { return 200 + (civData.stonestock.owned  * 0); },
+		get limit() { return 200 + (civData.stonestock.owned  * 999999999999999); },
 		set limit(value) { return this.limit; } // Only here for JSLint.
 	}),
 	new Resource({ id:"skins", singular:"skin", plural:"skins"}),
