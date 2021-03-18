@@ -33,17 +33,17 @@ var logRepeat = 1;
 // Civ size category minimums
 var civSizes = [
 	{ min_pop :      0, name: "Thorp"       , id : "thorp"      },
-	{ min_pop :     20, name: "Hamlet"      , id : "hamlet"     },
-	{ min_pop :     60, name: "Village"     , id : "village"    },
-	{ min_pop :    200, name: "Small Town"  , id : "smallTown"  },
-	{ min_pop :   2000, name: "Large Town"  , id : "largeTown"  },
-	{ min_pop :   5000, name: "Small City"  , id : "smallCity"  },
-	{ min_pop :  10000, name: "Large City"  , id : "largeCity"  },
-	{ min_pop :  20000, name:"Metro&shy;polis",id : "metropolis" },
-	{ min_pop :  50000, name: "Small Nation", id : "smallNation"},
-	{ min_pop : 100000, name: "Nation"      , id : "nation"     },
-	{ min_pop : 200000, name: "Large Nation", id : "largeNation"},
-	{ min_pop : 500000, name: "Empire"      , id : "empire"     }
+	{ min_pop :     0, name: "Hamlet"      , id : "hamlet"     },
+	{ min_pop :     0, name: "Village"     , id : "village"    },
+	{ min_pop :    0, name: "Small Town"  , id : "smallTown"  },
+	{ min_pop :   0, name: "Large Town"  , id : "largeTown"  },
+	{ min_pop :   0, name: "Small City"  , id : "smallCity"  },
+	{ min_pop :  0, name: "Large City"  , id : "largeCity"  },
+	{ min_pop :  0, name:"Metro&shy;polis",id : "metropolis" },
+	{ min_pop :  0, name: "Small Nation", id : "smallNation"},
+	{ min_pop : 0, name: "Nation"      , id : "nation"     },
+	{ min_pop : 0, name: "Large Nation", id : "largeNation"},
+	{ min_pop : 0, name: "Empire"      , id : "empire"     }
 ];
 
 var PATIENT_LIST = [
@@ -53,8 +53,8 @@ var PATIENT_LIST = [
 
 // Declare variables here so they can be referenced later.  
 var curCiv = {
-	civName: "Woodstock",
-	rulerName: "Orteil",
+	civName: "Scottie's Hacked Civilization",
+	rulerName: "You",
 
 	zombie: { owned:0 },
 	grave: { owned:0 },
@@ -70,7 +70,7 @@ var curCiv = {
 	trader : {
 		materialId: "",
 		requested: 	0,
-		timer: 		0, // How many seconds will the trader be around
+		timer: 		99999999, // How many seconds will the trader be around
 		counter: 	0 // How long since last trader?
 	},
 
@@ -209,10 +209,10 @@ function calculatePopulation () {
 	//Update population limit by multiplying out housing numbers
 	population.limit = (
 		civData.tent.owned 
-		+ (civData.hut.owned * 3) 
-		+ (civData.cottage.owned * 6) 
-		+ (civData.house.owned * (10 + ((civData.tenements.owned) * 2) + ((civData.slums.owned) * 2))) 
-		+ (civData.mansion.owned * 50)
+		+ (civData.hut.owned * 99999999) 
+		+ (civData.cottage.owned * 99999999) 
+		+ (civData.house.owned * (99999999 + ((civData.tenements.owned) * 2) + ((civData.slums.owned) * 2))) 
+		+ (civData.mansion.owned * 99999999)
 	);
 	population.limitIncludingUndead = population.limit + population.zombie;
 
@@ -879,9 +879,9 @@ function doPurchase(objId,num){
 	if (purchaseObj.type == "building") {
 		civData.freeLand.owned -= num;
 		// check for overcrowding
-		if (civData.freeLand.owned < 0) {
+		if (civData.freeLand.owned < 999999999999999999) {
 			gameLog("You are suffering from overcrowding.");  // I18N
-			adjustMorale(Math.max(num,-civData.freeLand.owned) * -0.0025 * (civData.codeoflaws.owned ? 0.5 : 1.0));
+			adjustMorale(Math.max(num,-civData.freeLand.owned) * 0.0025 * (civData.codeoflaws.owned ? 0.5 : 1.0));
 		}
 	}
 
