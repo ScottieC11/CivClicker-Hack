@@ -32,18 +32,18 @@ var logRepeat = 1;
 
 // Civ size category minimums
 var civSizes = [
-	{ min_pop :      0, name: "Thorp"       , id : "thorp"      },
-	{ min_pop :     0, name: "Hamlet"      , id : "hamlet"     },
-	{ min_pop :     0, name: "Village"     , id : "village"    },
-	{ min_pop :    0, name: "Small Town"  , id : "smallTown"  },
-	{ min_pop :   0, name: "Large Town"  , id : "largeTown"  },
-	{ min_pop :   0, name: "Small City"  , id : "smallCity"  },
-	{ min_pop :  0, name: "Large City"  , id : "largeCity"  },
-	{ min_pop :  0, name:"Metro&shy;polis",id : "metropolis" },
-	{ min_pop :  0, name: "Small Nation", id : "smallNation"},
-	{ min_pop : 0, name: "Nation"      , id : "nation"     },
-	{ min_pop : 0, name: "Large Nation", id : "largeNation"},
-	{ min_pop : 0, name: "Empire"      , id : "empire"     }
+	{ min_pop :      1, name: "Thorp"       , id : "thorp"      },
+	{ min_pop :     1, name: "Hamlet"      , id : "hamlet"     },
+	{ min_pop :     1, name: "Village"     , id : "village"    },
+	{ min_pop :    1, name: "Small Town"  , id : "smallTown"  },
+	{ min_pop :   1, name: "Large Town"  , id : "largeTown"  },
+	{ min_pop :   1, name: "Small City"  , id : "smallCity"  },
+	{ min_pop :  1, name: "Large City"  , id : "largeCity"  },
+	{ min_pop :  1, name:"Metro&shy;polis",id : "metropolis" },
+	{ min_pop :  1, name: "Small Nation", id : "smallNation"},
+	{ min_pop : 1, name: "Nation"      , id : "nation"     },
+	{ min_pop : 1, name: "Large Nation", id : "largeNation"},
+	{ min_pop : 1, name: "Empire"      , id : "empire"     }
 ];
 
 var PATIENT_LIST = [
@@ -70,7 +70,7 @@ var curCiv = {
 	trader : {
 		materialId: "",
 		requested: 	0,
-		timer: 		99999999, // How many seconds will the trader be around
+		timer: 		0, // How many seconds will the trader be around
 		counter: 	0 // How long since last trader?
 	},
 
